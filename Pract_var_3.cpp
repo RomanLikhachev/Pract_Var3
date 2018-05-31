@@ -2,6 +2,7 @@
 #include <algorithm>    
 #include <conio.h>
 #include <iomanip>
+
 using namespace std;
 
 void FillInc(int A[], int n) {
@@ -69,42 +70,56 @@ bool next_permutation(BidirIt first, BidirIt last)
 }
 
 void Print(int myints[], int n)
-{	int a = 0; char ch; int r = 1;
+{	
+	int a = 0, r = 1, pgcnt = 1; char ch;
 	sort(myints,myints+n);
-	do {
-		cout<<setw(2)<<r <<") ";
-		for(int i = 0; i <n;i++){
-			cout<<myints[i]<<" "; 
-			if(i == n-1) cout<<endl;
-			a+= 1;	
+	do 
+	{
+		cout << setw(4) << r <<") { ";
+		for(int i = 0; i < n; i++)
+		{
+			cout << myints[i] <<" "; 
+			if(i == n-1) cout<<"}"<<endl;
+			a += 1;	
 		}r++;
 		if(a == 10*n) 
 		{
-		    cout<<"next page - y/ exit - q "; 
+			cout<<"\n\t"<< pgcnt++ <<"-th page"<<endl;
+		    cout<<"\n\tNext page -> y \n \t Exit -> q "; 
+		    
 			ch = _getch();
-		    if(ch== 'y'){
+		
+		    if(ch == 'y')
+			{
 				system("cls");
 				a = 0;
-				cout<<"Next-->"<<endl;
 			}
 			else if(ch == 'q') break;
 		}
-		
+		 
   } while ( std::next_permutation(myints,myints+n) );
   
 }
 
-int main () {
+int main () 
+{
 	
-	int n;
-	cout<<"Pls, type count :"; cin>>n; cout<<endl;
-	int myints[1000];
+	int n, N, myints[1000];
+	cout<<"Please, enter the value of the number of digits of the array :"; 
+	cin>>n; 
+
 	FillInc(myints, n);
 	SelectSort(myints, n);
-	int N = fact(n);
-	cout<<"Count of permutations is : "<< N <<endl;
-	if(N >10) cout<<"!Big count of permutations!"<<endl;
+	char ch;
+	N = fact(n);
+	cout<<"\nArray is: A = {";
+	for(int e = 0; e < n; e++)
+		cout<<myints[e];
+	
+	cout<<"}\nCount of permutations is : "<< n <<"! = " << N <<endl;
+	if(N >10) cout<<"\n! Large number of permutations(arrays will be print on pages: 10 arr on 1 page) !\n"<<endl;
+	
+	ch = _getch();system("cls");
 	Print(myints, n);
 	
-  return 0;
 }
