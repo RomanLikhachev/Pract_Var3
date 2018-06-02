@@ -5,13 +5,6 @@
 
 using namespace std;
 
-void FillInc(int A[], int n) {
-    for(int i = 0; i <n; i++)
-    {	
-        A[i] = i+1; 
-    }
-}
-
 void SelectSort(int A[], int n){
   int i,j,k,d;
   
@@ -105,21 +98,27 @@ int main ()
 {
 	
 	int n, N, myints[1000];
+	char ch;
 	cout<<"Please, enter the value of the number of digits of the array :"; 
 	cin>>n; 
-
-	FillInc(myints, n);
+	
+	cout<<"\nEnter the values of array: ";
+	for(int cnt = 0; cnt < n ; cnt++ ){
+		cin>>myints[cnt];
+	}
+	
 	SelectSort(myints, n);
-	char ch;
+	
 	N = fact(n);
 	cout<<"\nArray is: A = {";
 	for(int e = 0; e < n; e++)
 		cout<<myints[e];
 	
-	cout<<"}\nCount of permutations is : "<< n <<"! = " << N <<endl;
-	if(N >10) cout<<"\n! Large number of permutations(arrays will be print on pages: 10 arr on 1 page) !\n"<<endl;
+	cout<<"}\nCount of permutations is : "<< n <<"! = " << N ;
+	if(N >10) 
+		cout<<"\n\n! Large number of permutations(arrays will be print on pages: 10 arr on 1 page) !\n\n";
 	
-	ch = _getch();system("cls");
+	ch = _getch(); system("cls");
 	Print(myints, n);
 	
 }
